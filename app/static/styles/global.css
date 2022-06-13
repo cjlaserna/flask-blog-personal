@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+/* colors */
+:root {
+	--p: 248 24% 20% !important;
+	--pf: 248 24% 16% !important;
+	--sf: 248 21% 21% !important;
+	--af: 249 12% 38% !important;
+	--nf: 245 22% 16% !important;
+	--b2: 246 24% 15% !important;
+	--b3: 246 24% 14% !important;
+	--bc: 246 55% 83% !important;
+	--pc: 248 65% 84% !important;
+	--sc: 248 85% 85% !important;
+	--ac: 249 100% 89% !important;
+	--nc: 245 59% 84% !important;
+	--inc: 197 100% 9% !important;
+	--suc: 189 100% 15% !important;
+	--wac: 35 100% 14% !important;
+	--erc: 2 100% 15% !important;
+	--rounded-box: 1rem !important;
+	--rounded-btn: 0.5rem !important;
+	--rounded-badge: 1.9rem !important;
+	--animation-btn: 0.25s !important;
+	--animation-input: 0.2s !important;
+	--btn-text-case: uppercase !important;
+	--btn-focus-scale: 0.95;
+	--border-btn: 1px !important;
+	--tab-border: 1px !important;
+	--tab-radius: 0.5rem !important;
+	--s: 248 21% 26% !important;
+	--a: 249 12% 47% !important;
+	--n: 245 22% 20% !important;
+	--b1: 246 24% 17% !important;
+	--in: 197 48% 47% !important;
+	--su: 189 43% 73% !important;
+	--wa: 35 88% 72% !important;
+	--er: 2 66% 75% !important;
+}
+
+html > * {
+	transition: all;
+	transition-duration: 1s;
+	transition-timing-function: ease-in-out;
+	scroll-behavior: smooth;
+}
+
+body {
+	background-color: var(--pc);
+	background-size: cover;
+	color: var(--pc);
+	width: auto;
+	overflow-x: hidden;
+	font-family: "Space Mono", serif;
+	margin: 0px;
+}
+
+/* text styles */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+time,
+button {
+	font-family: "Space Mono", serif;
+	color: var(--b1);
+	margin: 0;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+/* etc. */
+.container {
+	line-height: 1.4;
+	padding-left: 1.25rem;
+	padding-right: 1.25rem;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 1280px;
+}
+
+.section {
+	margin-bottom: 4rem;
+	margin-top: 4rem;
+}
+
+.title {
+	font-size: 4rem;
+	letter-spacing: -0.04em;
+	line-height: 1.2;
+	font-weight: 700;
+	margin: 0;
+}
+
+.scroll-smooth {
+	scroll-behavior: smooth;
+}
+
+img.aspect-square {
+	aspect-ratio: 1 / 1;
+	object-fit: cover;
+}

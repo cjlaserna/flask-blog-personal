@@ -1,0 +1,21 @@
+/* map */
+circle.plot {
+	fill: #c4a7e7;
+}
+.mapael .map {
+	position: relative;
+}
+.mapael .mapTooltip {
+	position: absolute;
+	z-index: 1000;
+	max-width: 200px;
+	display: none;
+}
+@media only screen and (max-width: 991px) {
+	.mapael .mapTooltip {
+		position: absolute;
+		z-index: 1000;
+		max-width: 200px;
+		display: none;
+	}
+}
