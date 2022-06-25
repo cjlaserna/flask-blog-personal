@@ -1,13 +1,13 @@
 from gql import gql, Client
 from gql.transport.aiohttp import AIOHTTPTransport
-from dotenv import load_dotenv
 import os
 import json
 
-load_dotenv()
+
+token = os.getenv("DATOCMS_READONLY_TOKEN")
 
 url = "https://graphql.datocms.com/"
-auth = "Bearer " + str(os.getenv('DATOCMS_READONLY_TOKEN'))
+auth = "Bearer " + str(token)
 query = gql("""{
 			aboutMe {
 				greeting
@@ -57,5 +57,3 @@ client = Client(transport=transport, fetch_schema_from_transport=True)
 
 result = client.execute(query)
 test = result["hobbies"]
-
-print(test)
