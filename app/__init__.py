@@ -49,6 +49,16 @@ def home():
     education = result['education']
     return render_template('./pages/home.html', menu=menu, aboutMe=aboutMe, jobs=jobs, hobbies=hobbies, education=education, title=title)
 
+@app.route("/timeline")
+def timeline():
+    menu = [{'name': 'Home', 'url': '/'},
+            {'name': 'Education', 'url': '#education'},
+            {'name': 'Experiences', 'url': '#experiences'},
+            {'name': 'Hobbies', 'url': '#hobbies'},
+            {'name': 'Map', 'url': '#map'}
+            ]  
+    title = 'MLH Fellowship Timeline'
+    return render_template('./pages/timeline.html', title="Timeline")
 
 @app.route("/api/timeline_post", methods=["POST"])
 def post_time_line_post():

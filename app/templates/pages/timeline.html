@@ -1,0 +1,22 @@
+{% extends './layouts.html' %}
+{% block form %}
+<div class='flex align-center justify-center w-full'>
+	<div class='form w-4/5 mt-5'>
+		<form class='w-full'>
+			<div class='relative'>
+				<textarea class="textarea w-full rounded-lg border-accent hover: border-accent-focus border-1 color-primary-content bg-primary"  placeholder="Post something on my timeline..." required autocomplete="off"> </textarea>
+				<button type="submit" class="px-3 py-1 m-2 btn float-right justify-end absolute bottom-0 right-0">Post</button>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}
+{% block timeline %}
+<div class='flex align-center justify-center w-full'>
+	<div class='w-4/5 mt-5'>
+		<div class='bg-primary color-primary-content border-2 border-accent hover:border-accent-focus rounded-lg w-full p-4'>
+			<p> There are no posts to display. </p>
+		</div>
+	</div>
+</div>
+{% endblock %}
