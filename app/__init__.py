@@ -39,7 +39,8 @@ def home():
             {'name': 'Education', 'url': '#education'},
             {'name': 'Experiences', 'url': '#experiences'},
             {'name': 'Hobbies', 'url': '#hobbies'},
-            {'name': 'Map', 'url': '#map'}
+            {'name': 'Map', 'url': '#map'},
+	    {'name': 'Timeline', 'url': '/timeline'}
             ]
     title = 'MLH Fellowship Project'
 
@@ -52,14 +53,18 @@ def home():
 @app.route("/timeline")
 def timeline():
     menu = [{'name': 'Home', 'url': '/'},
-            {'name': 'Education', 'url': '#education'},
-            {'name': 'Experiences', 'url': '#experiences'},
-            {'name': 'Hobbies', 'url': '#hobbies'},
-            {'name': 'Map', 'url': '#map'}
+            {'name': 'Education', 'url': '/#education'},
+            {'name': 'Experiences', 'url': '/#experiences'},
+            {'name': 'Hobbies', 'url': '/#hobbies'},
+            {'name': 'Map', 'url': '/#map'},
+	    {'name': 'Timeline', 'url': '/timeline'}
             ]  
     title = 'MLH Fellowship Timeline'
-    return render_template('./pages/timeline.html', title="Timeline")
+    timeline_response = [model_to_dict(p) for p in TimelinePost.select().order_by(TimelinePost.created_at.desc())]    
+    print(timeline_response)
+    return render_template('./pages/timeline.html', title="Timeline", menu=menu, posts=timeline_response)
 
+# API routing
 @app.route("/api/timeline_post", methods=["POST"])
 def post_time_line_post():
     name = request.form['name']

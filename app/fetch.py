@@ -3,7 +3,6 @@ from gql.transport.aiohttp import AIOHTTPTransport
 import os
 import json
 
-
 token = os.getenv("DATOCMS_READONLY_TOKEN")
 
 url = "https://graphql.datocms.com/"
@@ -56,4 +55,4 @@ transport = AIOHTTPTransport(url=url, headers=headers)
 client = Client(transport=transport, fetch_schema_from_transport=True)
 
 result = client.execute(query)
-test = result["hobbies"]
+
