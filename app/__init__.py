@@ -96,3 +96,10 @@ def get_time_line_post():
             for p in TimelinePost.select().order_by(TimelinePost.created_at.desc())
         ]
     }
+
+@app.route("/api/timeline_post", methods=["DELETE"])
+def delete_time_line_posts():
+    arg = request.form['id']
+    
+    TimelinePost.objects.filter(id=arg).delete()
+    return model_to_dict(timeline_post)
