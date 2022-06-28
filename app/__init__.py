@@ -101,7 +101,8 @@ def get_time_line_post():
 def delete_time_line_posts():
     arg = request.form['id']
     
-    TimelinePost.delete().where(TimelinePost.id == arg)
+    sql = TimelinePost.delete().where(TimelinePost.id == arg)
+    sql.execute()
     return { 
 	'timeline_posts': [
 		model_to_dict(p)
