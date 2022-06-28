@@ -26,6 +26,19 @@
 			<p> {{post.content}} </p>
 		</div>
 		{% endfor %}
+		<!-- pagination -->
+		<div class='w-full flex align-center justify-center'>
+		<div class="btn-group">
+			{% if pg !=  1 %}
+				{% set prev = pg - 1 %}
+			{% else %} {% set prev = 1 %} {% endif %}
+			
+			{% set nxt = pg + 1 %}
+			<a href="./timeline?pg={{prev}}"> <button class="btn">«</button></a>
+			<button class="btn">Page {{pg}}</button>
+			<a href="./timeline?pg={{nxt}}"<button class="btn">»</button></a>
+		</div>
+		</div>
 	</div>
 	{% else %} {% endif %}
 </div>

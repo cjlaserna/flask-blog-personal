@@ -60,9 +60,21 @@ def timeline():
 	    {'name': 'Timeline', 'url': '/timeline'}
             ]  
     title = 'MLH Fellowship Timeline'
-    timeline_response = [model_to_dict(p) for p in TimelinePost.select().order_by(TimelinePost.created_at.desc())]    
-    print(timeline_response)
-    return render_template('./pages/timeline.html', title="Timeline", menu=menu, posts=timeline_response)
+        
+    # pagination	    
+    try:
+    	page = int(request.args['pg'])
+    except:
+        page = 1
+
+    if (page == 1):
+        cursor = 0
+    else:
+        cursor = 10* (page - 1)
+    limit = 10 * page
+    timeline_response = [model_to_dict(p) for p in TimelinePost.select().order_by(TimelinePost.created_at.desc())[cursor:limit]]   
+   
+    return render_template('./pages/timeline.html', title="Timeline", menu=menu, posts=timeline_response, pg=page)
 
 # API routing
 @app.route("/api/timeline_post", methods=["POST"])
