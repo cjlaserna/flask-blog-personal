@@ -3,7 +3,7 @@ from peewee import *
 
 from app import TimelinePost
 
-Models = [TimelinePost]
+MODELS = [TimelinePost]
 
 # use an in-memory SQLite for tests
 test_db = SqliteDatabase(':memory:')
