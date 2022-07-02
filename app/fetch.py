@@ -3,6 +3,7 @@ from gql.transport.aiohttp import AIOHTTPTransport
 import os
 import json
 import sys
+import json
 
 token = os.getenv("DATOCMS_READONLY_TOKEN")
 
@@ -56,7 +57,6 @@ transport = AIOHTTPTransport(url=url, headers=headers)
 client = Client(transport=transport, fetch_schema_from_transport=True)
 
 backup_result="""{
-  "data": {
     "aboutMe": {
       "greeting": "Hello,",
       "shortIntroduction": "I’m Catherine Laserna, an 18-year-old computer science major and self-taught programmer on the web. ",
@@ -181,10 +181,12 @@ backup_result="""{
         "link": "https://github.com/cjlaserna/"
       }
     ]
-  }
-}""" 
+}"""
 
 try:
     result = client.execute(query)
 except:
-    result = backup_result
+    result = json.loads(backup_result)
+
+# result = json.loads(backup_result)
+# print(result["aboutMe"])
