@@ -62,13 +62,13 @@ def timeline():
             {'name': 'Experiences', 'url': '/#experiences'},
             {'name': 'Hobbies', 'url': '/#hobbies'},
             {'name': 'Map', 'url': '/#map'},
-	    {'name': 'Timeline', 'url': '/timeline'}
+            {'name': 'Timeline', 'url': '/timeline'}
             ]  
     title = 'MLH Fellowship Timeline'
         
     # pagination	    
     try:
-    	page = int(request.args['pg'])
+        page = int(request.args['pg'])
     except:
         page = 1
 
@@ -114,3 +114,4 @@ def delete_time_line_posts():
 		for p in TimelinePost.select().order_by(TimelinePost.created_at.desc())
 	]
     }
+
