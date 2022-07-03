@@ -5,6 +5,7 @@ from peewee import *
 import datetime
 from dotenv import load_dotenv
 from playhouse.shortcuts import model_to_dict
+import re
 
 load_dotenv()
 
@@ -62,13 +63,13 @@ def timeline():
             {'name': 'Experiences', 'url': '/#experiences'},
             {'name': 'Hobbies', 'url': '/#hobbies'},
             {'name': 'Map', 'url': '/#map'},
-	    {'name': 'Timeline', 'url': '/timeline'}
+            {'name': 'Timeline', 'url': '/timeline'}
             ]  
     title = 'MLH Fellowship Timeline'
         
     # pagination	    
     try:
-    	page = int(request.args['pg'])
+        page = int(request.args['pg'])
     except:
         page = 1
 
@@ -78,15 +79,31 @@ def timeline():
         cursor = 10* (page - 1)
     limit = 10 * page
     timeline_response = [model_to_dict(p) for p in TimelinePost.select().order_by(TimelinePost.created_at.desc())[cursor:limit]]   
-   
+    
     return render_template('./pages/timeline.html', title="Timeline", menu=menu, posts=timeline_response, pg=page)
 
 # API routing
 @app.route("/api/timeline_post", methods=["POST"])
 def post_time_line_post():
-    name = request.form['name']
-    email = request.form['email']
-    content = request.form['content']
+    try:
+        name = request.form['name']
+    except: 
+        return "Invalid name", 400
+
+    valid_email = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+
+    if re.fullmatch(valid_email, request.form['email']):   
+        email = request.form['email']
+    else: 
+        return "Invalid email", 400
+    
+    try:
+        content = request.form['content']
+        if len(content) == 0:
+            return "Invalid content", 400
+    except KeyError:
+        return "Invalid content", 400
+        
     timeline_post = TimelinePost.create(
         name=name, email=email, content=content)
 
@@ -114,3 +131,4 @@ def delete_time_line_posts():
 		for p in TimelinePost.select().order_by(TimelinePost.created_at.desc())
 	]
     }
+
