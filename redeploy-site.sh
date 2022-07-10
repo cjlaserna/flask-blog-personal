@@ -2,5 +2,5 @@
 command cd flask-blog-personal
 command git fetch && git reset origin/main --hard
 poetry install
-command systemctl daemon-reload
-command systemctl restart myportfolio
+command docker compose -f docker-compose.prod.yml down
+command docker compose -f docker-compose.prod.yml up -d --build
