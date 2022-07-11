@@ -37,7 +37,7 @@ class TimelinePost(Model):
 mydb.connect()
 mydb.create_tables([TimelinePost])
 
-
+# site routing
 @app.route('/')
 def home():
     """ Landing Page """
