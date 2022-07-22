@@ -5,7 +5,7 @@ description = "MLH Production Engineering Track Project"
 authors = ["cjlaserna <49669196+cjlaserna@users.noreply.github.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "3.6.8"
 cffi = "1.15.0"
 click = "8.0.1"
 cryptography = "37.0.2"
