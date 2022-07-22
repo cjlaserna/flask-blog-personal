@@ -29,7 +29,12 @@ jobs:
           SSH_IP: ${{ secrets.SSH_IP }}
 
       - name: Deploy site
+        id: deployment-step
         run: ssh my-vps 'cd ${{ secrets.PROJECT_ROOT }} && pwd'
       
+      - name: action-slack
+        if: failure() && steps.test-app.outcome != 'success'
+        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=⚠️ Deployment Failed"
+
       - name: Notify Discord
         run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"
