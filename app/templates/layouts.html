@@ -76,7 +76,7 @@
 	<body class="scroll-smooth" lang="en">
 		{% include '/partials/nav.html' %}
 		<div class="container">
-		<!-- Home page -->
+			<!-- Home page -->
 			<!-- about -->
 			{% block about %}{% endblock %}
 			<!-- education -->
@@ -88,9 +88,12 @@
 
 			<!-- map -->
 			{% block map %} {% endblock %}
-		<!-- Timeline -->
-		{% block form %}{% endblock %}
-		{% block timeline %}{% endblock %}
+
+			<!-- Timeline -->
+			{% block form %}{% endblock %} {% block timeline %}{% endblock %}
+
+			<!-- errors -->
+			{% block errorPage %} {% endblock %}
 		</div>
 		{% include '/partials/footer.html' %}
 	</body>

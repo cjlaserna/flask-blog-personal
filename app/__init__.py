@@ -38,17 +38,19 @@ class TimelinePost(Model):
 mydb.connect()
 mydb.create_tables([TimelinePost])
 
+# site nav
+menu = [{'name': 'Home', 'url': '/'},
+            {'name': 'Education', 'url': '/#education'},
+            {'name': 'Experiences', 'url': '/#experiences'},
+            {'name': 'Hobbies', 'url': '/#hobbies'},
+            {'name': 'Map', 'url': '/#map'},
+            {'name': 'Timeline', 'url': '/timeline'}
+            ]  
+
 # site routing
 @app.route('/')
 def home():
     """ Landing Page """
-    menu = [{'name': 'Home', 'url': '/'},
-            {'name': 'Education', 'url': '#education'},
-            {'name': 'Experiences', 'url': '#experiences'},
-            {'name': 'Hobbies', 'url': '#hobbies'},
-            {'name': 'Map', 'url': '#map'},
-	    {'name': 'Timeline', 'url': '/timeline'}
-            ]
     title = 'MLH Fellowship Project'
 
     aboutMe = result['aboutMe']
@@ -59,13 +61,6 @@ def home():
 
 @app.route("/timeline")
 def timeline():
-    menu = [{'name': 'Home', 'url': '/'},
-            {'name': 'Education', 'url': '/#education'},
-            {'name': 'Experiences', 'url': '/#experiences'},
-            {'name': 'Hobbies', 'url': '/#hobbies'},
-            {'name': 'Map', 'url': '/#map'},
-            {'name': 'Timeline', 'url': '/timeline'}
-            ]  
     title = 'MLH Fellowship Timeline'
         
     # pagination	    
@@ -133,3 +128,7 @@ def delete_time_line_posts():
 	]
     }
 
+# error handlers
+@app.errorhandler(404)
+def page_not_found(e):
+        return render_template('./pages/errorpage.html', title="Error 404", menu=menu), 404
