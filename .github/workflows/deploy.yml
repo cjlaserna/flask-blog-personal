@@ -34,7 +34,7 @@ jobs:
       
       - name: Deployment Failed
         if: failure() && steps.deployment-step.outcome != 'success'
-        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=⚠️ Deployment Failed '${{ steps.test-app.outcome }}' "
+        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=⚠️ Deployment Failed '${{ steps.deployment-step.outcome }}' "
 
       - name: Notify Discord
         run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"
