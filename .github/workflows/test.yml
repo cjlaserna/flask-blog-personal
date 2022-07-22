@@ -1,0 +1,34 @@
+name: Run Tests
+on:
+        push:
+                branches:
+                        - main
+        pull_request:
+                branches:
+                        - main
+jobs:
+        test:
+                runs-on: ubuntu-latest
+                name: Run Tests
+                env:
+                        TESTING: true
+                steps:
+                        - name: Checkout Repository
+                          uses: actions/checkout@v2
+                         
+                        - name: Setup Python
+                          uses: actions/setup-python@v4
+                          with:
+                                  python-version: '3.6.8'
+
+                        - name: Setup Poetry
+                          run: python3 -m pip install poetry==$POETRY_VERSION
+
+                        - name: Setup Poetry Config
+                          run: poetry config virtualenvs.in-project true --local
+
+                        - name: Install dependencies
+                          run: poetry update; poetry install
+
+                        - name: Run Tests
+                          run: ./run_test.sh
