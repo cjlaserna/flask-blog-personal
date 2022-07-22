@@ -33,8 +33,8 @@ jobs:
         run: ssh my-vps 'cd ${{ secrets.PROJECT_ROOT }} && pwd'
       
       - name: Deployment Failed
-        if: failure() && steps.test-app.outcome != 'success'
-        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=⚠️ Deployment Failed"
+        if: failure() && steps.deployment-step.outcome != 'success'
+        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=⚠️ Deployment Failed '${{ steps.test-app.outcome }}' "
 
       - name: Notify Discord
         run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"
