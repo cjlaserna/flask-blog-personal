@@ -30,7 +30,7 @@ jobs:
 
       - name: Deploy site
         id: deployment-step
-        run: ssh my-vps 'cd ${{ secrets.PROJECT_ROOT }} && pwd'
+        run: ssh my-vps '~/redeploy-site.sh'
       
       - name: Deployment Failed
         if: failure() && steps.deployment-step.outcome != 'success'
